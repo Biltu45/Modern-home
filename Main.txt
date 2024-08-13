@@ -1,0 +1,49 @@
+figma.showUI(__html__);
+
+function createToggleSwitch() {
+  const rect = figma.createRectangle();
+  rect.resize(50, 25);
+  rect.fills = [{ type: 'SOLID', color: { r: 0.9, g: 0.9, b: 0.9 } }];
+  
+  const circle = figma.createEllipse();
+  circle.resize(20, 20);
+  circle.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
+  circle.x = 5;
+  circle.y = 2.5;
+
+  const group = figma.group([rect, circle], figma.currentPage);
+  group.name = "Toggle Switch";
+  
+  return group;
+}
+
+function createApplianceControl(name, iconPath) {
+  const frame = figma.createFrame();
+  frame.resize(300, 80);
+  frame.layoutMode = 'HORIZONTAL';
+  frame.primaryAxisSizingMode = 'AUTO';
+
+  const icon = figma.createImageComponent();
+  icon.name = name + " Icon";
+  icon.fills = [{ type: 'IMAGE', imageHash: figma.createImage(iconPath).hash }];
+
+  const text = figma.createText();
+  text.characters = name;
+  text.fontSize = 18;
+
+  const toggle = createToggleSwitch();
+
+  frame.appendChild(icon);
+  frame.appendChild(text);
+  frame.appendChild(toggle);
+
+  return frame;
+}
+
+const fanControl = createApplianceControl('Fan', 'path_to_fan_icon');
+const acControl = createApplianceControl('AC', 'path_to_ac_icon');
+
+figma.currentPage.appendChild(fanControl);
+figma.currentPage.appendChild(acControl);
+
+figma.closePlugin();
