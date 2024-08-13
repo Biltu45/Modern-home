@@ -1,1 +1,1 @@
-# Modern-home
+Design a UI/UX solution for a mobile application that allows users to control various home appliances, such as fans, air conditioners, TVs, lights, and bulbs. The solution should provide a clean, intuitive, and appealing interface that enables users to easily manage these devices from a single screen.
